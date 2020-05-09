@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4483836551623857160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4483836551623857162}
+  - component: {fileID: 4483836551623857163}
+  m_Layer: 0
+  m_Name: UIHandler
+  m_TagString: UIHandler
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4483836551623857162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4483836551623857160}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4483836551623857163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4483836551623857160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8fba0f1dfd3a24ba24b2fd7bdbf4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DevelopmentScore: {fileID: 0}
+  _Love: {fileID: 0}
+  _Fear: {fileID: 0}
+  _PassRate: {fileID: 0}
+  _EnergyCharges: {fileID: 0}
+  _Time: {fileID: 0}
+  _EnergySlider: {fileID: 0}
+  _EmotionBar: {fileID: 0}
+  ch: {fileID: 0}
+  spellCaster: {fileID: 0}
+  uiCanvas: {fileID: 0}
+  manMenuPrefab: {fileID: 4505516195647109758, guid: 9fadc34dfa261ee44a7977ca2715f472,
+    type: 3}
+  manMenuOpen: 0
+  whatIsMan:
+    serializedVersion: 2
+    m_Bits: 1024
+  goodSpellQueue: {fileID: 0}
+  selectedBox: {fileID: 0}
+  spellButtonPrefabs:
+  - {fileID: 7747204019916328170, guid: c42b3345256fe7047820ae6f3d32ac9b, type: 3}
+  - {fileID: 6252496030177220889, guid: f89437cc0f7276f4881bac2a71c24c41, type: 3}
+  queuedSpellButtons: []
+  queueItemsShown: 5
+  queueButtonSize: 60
