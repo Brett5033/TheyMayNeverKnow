@@ -20,12 +20,18 @@ public class Man : MonoBehaviour
     public Animator ani;
     public Seeker seeker;
     public MapTile homeTile;
+    public EmotionPopup emotionPopupPrefab;
+    public GameObject gravestone;
     [SerializeField] public Color[] colors; // Traveling Away, Traveling Home, Destination
 
     Vector3 home;
     bool resting;
     MapTile targetTile;
     Vector2 direction;
+    EmotionPopup ePop;
+
+    bool statMenuOpen = false;
+    bool emotionPopupOpen = false;
 
     public PlayerState state = PlayerState.atHome;
 
@@ -48,7 +54,7 @@ public class Man : MonoBehaviour
         ani = GetComponent<Animator>();
         path = GetComponent<AIPath>();
         seeker = GetComponent<Seeker>();
-        brain = new ManBrain();
+        brain = new ManBrain(this);
         homeTile = transform.parent.GetComponent<MapTile>();
         home = homeTile.spawnPos;
 
@@ -77,6 +83,8 @@ public class Man : MonoBehaviour
             playerStateMachine();
         }
     }
+
+    
 
     private void playerStateMachine() // Controls the player states and the sequence of actions
     {
@@ -255,6 +263,63 @@ public class Man : MonoBehaviour
                 break;
         }
     }
-    
+
+    public void setStatMenuOpen(bool openMenu)
+    {
+        statMenuOpen = openMenu;
+        if (openMenu) // Close all other UI's
+        {
+
+        }
+    }
+
+    private void OnMouseEnter()
+    {
+        toggleEmotionPopup();
+    }
+
+    private void OnMouseExit()
+    {
+        toggleEmotionPopup();
+    }
+
+    public void toggleEmotionPopup()
+    {
+        if (!emotionPopupOpen)
+        {
+            ePop = Instantiate(emotionPopupPrefab, Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 2f, 0f)), Quaternion.identity);
+            ePop.man = this;
+            ePop.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>().transform);
+            emotionPopupOpen = true;
+        } else
+        {
+            ePop.close();
+            emotionPopupOpen = false;
+        }
+    }
+
+    public void toggleEmotionPopup(bool forceOpen)
+    {
+        if (forceOpen && !emotionPopupOpen) // Open if not already open
+        {
+            ePop = Instantiate(emotionPopupPrefab, Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 2f, 0f)), Quaternion.identity);
+            ePop.man = this;
+            ePop.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>().transform);
+            emotionPopupOpen = true;
+        }
+        else if(!forceOpen && emotionPopupOpen) // Close if not aleady closed
+        {
+            ePop.close();
+            emotionPopupOpen = false;
+        }
+    }
+
+    public void summonDeath()
+    {
+        gt.population.populationList.Remove(this);
+        toggleEmotionPopup(false);
+        Instantiate(gravestone, transform.position, Quaternion.identity);
+        homeTile.zeroTile();
+    }
 
 }

@@ -32,7 +32,7 @@ public class Spell : MonoBehaviour
     protected IEnumerator ApplyFearOverTime(Man man,float duration, float totalApplied)
     {
         float currentDamageCount = 0;
-        while(man.brain.Fear > 0 && currentDamageCount < totalApplied)
+        while(man != null && man.brain.Fear > 0 && currentDamageCount < totalApplied)
         {
             man.brain.changeFear(totalApplied / duration);
             yield return new WaitForSeconds(1f);

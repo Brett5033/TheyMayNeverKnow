@@ -11,11 +11,13 @@ public class ManMenu : MonoBehaviour
     public TMPro.TextMeshProUGUI _Fear;
     public TMPro.TextMeshProUGUI _State;
     public Button closeButton;
+
     // Start is called before the first frame update
     void Start()
     {
         closeButton.onClick.AddListener(() => { close(); });
         ControlFactors.setPlayerCast(false);
+        man.setStatMenuOpen(true);
         _Label.SetText("Man Stats:"); // Reserved for names
         _Love.SetText("Love: " + ((man.brain.Love / man.brain.maxEmotion) * 100f).ToString("F0") + "%");
         _Fear.SetText("Fear: " + ((man.brain.Fear / man.brain.maxEmotion) * 100f).ToString("F0") + "%");
@@ -48,6 +50,7 @@ public class ManMenu : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ManualCamera>().setTarget(null);
         GameObject.FindGameObjectWithTag("UIHandler").GetComponent<UIHandler>().manMenuOpen = false;
+        man.setStatMenuOpen(false);
         ControlFactors.setPlayerCast(true);
         Destroy(gameObject);
     }

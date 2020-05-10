@@ -223,18 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1277818049 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2206017919193759303, guid: af4b17d91f939c14c802106e645e0038,
-    type: 3}
-  m_PrefabInstance: {fileID: 2206017920198855302}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!223 &1766069797 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 2206017919247040987, guid: af4b17d91f939c14c802106e645e0038,
@@ -532,6 +520,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2206017919608160593, guid: af4b17d91f939c14c802106e645e0038,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206017919608160593, guid: af4b17d91f939c14c802106e645e0038,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206017919608160593, guid: af4b17d91f939c14c802106e645e0038,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206017919608160593, guid: af4b17d91f939c14c802106e645e0038,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206017919608160593, guid: af4b17d91f939c14c802106e645e0038,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2206017920419260001, guid: af4b17d91f939c14c802106e645e0038,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -561,6 +574,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074488505627030551, guid: af4b17d91f939c14c802106e645e0038,
+        type: 3}
+      propertyPath: m_FillCenter
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af4b17d91f939c14c802106e645e0038, type: 3}
@@ -809,7 +827,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _PassRate
       value: 
-      objectReference: {fileID: 1277818049}
+      objectReference: {fileID: 0}
     - target: {fileID: 4483836551623857163, guid: 55b3c672438264c4c99134bbdc670e4d,
         type: 3}
       propertyPath: _EnergyCharges

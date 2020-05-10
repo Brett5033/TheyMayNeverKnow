@@ -559,6 +559,10 @@ MonoBehaviour:
   ani: {fileID: 0}
   seeker: {fileID: 0}
   homeTile: {fileID: 0}
+  emotionPopupPrefab: {fileID: 641171466834647252, guid: 70e835a9d2045aa40b74d28a63976c82,
+    type: 3}
+  gravestone: {fileID: 6334491345299024739, guid: aaba83c599711154aad51a610872044b,
+    type: 3}
   colors:
   - {r: 0.69, g: 0.66183674, b: 0, a: 1}
   - {r: 0, g: 0.55048645, b: 0.7264151, a: 1}

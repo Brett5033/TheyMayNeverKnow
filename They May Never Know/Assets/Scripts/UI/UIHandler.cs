@@ -8,7 +8,6 @@ public class UIHandler : MonoBehaviour
     public TMPro.TextMeshProUGUI _DevelopmentScore;
     public TMPro.TextMeshProUGUI _Love;
     public TMPro.TextMeshProUGUI _Fear;
-    public TMPro.TextMeshProUGUI _PassRate;
     public TMPro.TextMeshProUGUI _EnergyCharges;
     public TMPro.TextMeshProUGUI _Time;
     public Slider _EnergySlider;
@@ -16,6 +15,7 @@ public class UIHandler : MonoBehaviour
 
     public ControlHandler ch;
     public PlayerSpellCaster spellCaster;
+    public GridTester gt;
     public Canvas uiCanvas;
 
     public ManMenu manMenuPrefab;
@@ -40,7 +40,6 @@ public class UIHandler : MonoBehaviour
         _DevelopmentScore.SetText("Development Score: " + ControlFactors.DEVELOPMENT_SCORE.ToString());
         _Love.SetText("Love: " + ((ControlFactors.LOVE / ControlFactors.EMOTION)*100f).ToString("F0") + "%");
         _Fear.SetText("Fear: " + ((ControlFactors.FEAR / ControlFactors.EMOTION)*100f).ToString("F0") + "%");
-        _PassRate.SetText("Pass Rate: " + ControlFactors.PASS_RATE.ToString());
         _EnergySlider.value = ((ControlFactors.ENERGY % ControlFactors.MAX_ENERGY) / ControlFactors.MAX_ENERGY);
         _EnergyCharges.SetText(((int)ControlFactors.ENERGY / (int)ControlFactors.MAX_ENERGY).ToString("F2"));
         _EmotionBar.value = (ControlFactors.LOVE / ControlFactors.EMOTION);

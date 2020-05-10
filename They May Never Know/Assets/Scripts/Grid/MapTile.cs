@@ -134,6 +134,7 @@ public class MapTile : MonoBehaviour
                     else
                     {
                         hasChanged = true;
+                        ControlFactors.DEVELOPMENT_SCORE++;
                         if (population.Count < 1)
                         {
                             changePopulation(true);
@@ -150,6 +151,7 @@ public class MapTile : MonoBehaviour
                     else
                     {
                         hasChanged = true;
+                        ControlFactors.DEVELOPMENT_SCORE--;
                         if (population.Count > 0)
                         {
                             changePopulation(false);
@@ -161,6 +163,11 @@ public class MapTile : MonoBehaviour
             SetTile();
         }
         return hasChanged;
+    }
+
+    public void zeroTile()
+    {
+        ChangeTileStage(-((int)stage));
     }
 
     public void changePopulation(bool adding)

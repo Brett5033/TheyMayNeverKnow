@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Nimbus : Spell
 {
-    public Man target;
+    public Man target = null;
     public float damageTotal;
 
     protected override void Awake()
@@ -27,7 +27,7 @@ public class Nimbus : Spell
 
     public override void Update()
     {
-        if (spellUsed)
+        if (spellUsed && target != null)
         {
             //Debug.Log("updated");
             transform.position = new Vector3(target.transform.position.x, target.transform.position.y + 1.5f, 20);
