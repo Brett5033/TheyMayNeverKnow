@@ -176,7 +176,7 @@ public class MapTile : MonoBehaviour
         {
             Man m = Instantiate(manPrefab, spawnPos, Quaternion.identity);
             m.transform.parent = transform;
-            m.homeLevel = 1;
+            m.level = 1;
             gt.population.populationList.Add(m);
             population.Add(m);
         } else
@@ -209,7 +209,7 @@ public class MapTile : MonoBehaviour
     {
         for (int i = 0; i < population.Count; i++)
         {
-            population[i].homeLevel = (int)stage;
+            population[i].level = (int)stage;
         }
     }
 

@@ -7,29 +7,33 @@ public class Man : MonoBehaviour
 {
 
     public float speed;
-    public float randomDirInt;
     public float restTime;
-    public int homeLevel;
-    public ManBrain brain;
-    public Rigidbody2D rb;
-    public GridTester gt;
-    public AIPath path;
+    public int level;
+
     public ParticleSystem celebrate;
     public ParticleSystem altarOffering;
     public ParticleSystem suprise;
-    public Animator ani;
-    public Seeker seeker;
-    public MapTile homeTile;
     public EmotionPopup emotionPopupPrefab;
     public GameObject gravestone;
-    [SerializeField] public Color[] colors; // Traveling Away, Traveling Home, Destination
 
-    Vector3 home;
-    bool resting;
+    public ManBrain brain;
+    public Rigidbody2D rb;
+    public Animator ani;
+    public ManSprite currentModel;
+
+    public GridTester gt;
+    public ManSpriteList mSpriteList;
+
+    public AIPath path;
+    public Seeker seeker;
+    public MapTile homeTile;
+
     MapTile targetTile;
-    Vector2 direction;
-    EmotionPopup ePop;
+    Vector3 home;
 
+    bool resting;
+    
+    EmotionPopup ePop;
     bool statMenuOpen = false;
     bool emotionPopupOpen = false;
 
@@ -50,11 +54,13 @@ public class Man : MonoBehaviour
     void Start()
     {
         gt = GameObject.FindGameObjectWithTag("GridController").GetComponent<GridTester>();
+        mSpriteList = GameObject.FindGameObjectWithTag("ManSpriteList").GetComponent<ManSpriteList>();
         rb = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         path = GetComponent<AIPath>();
         seeker = GetComponent<Seeker>();
         brain = new ManBrain(this);
+
         homeTile = transform.parent.GetComponent<MapTile>();
         home = homeTile.spawnPos;
 
@@ -62,6 +68,7 @@ public class Man : MonoBehaviour
         seeker.StartPath(ABPath.Construct(transform.position, home, null));
         SetSeeker(false);
         path.maxSpeed = speed;
+
         ani.Play("Idle", 0, Random.Range(0, ani.GetCurrentAnimatorStateInfo(0).length));
     }
 
@@ -137,7 +144,7 @@ public class Man : MonoBehaviour
                         resting = false;
 
                         SetSeeker(true);
-                        targetTile = gt.targetRandomMapTilePosition(this, home, homeLevel);
+                        targetTile = gt.targetRandomMapTilePosition(this, home, level);
                         seeker.StartPath(ABPath.Construct(transform.position, targetTile.spawnPos));
                     }
                     else if (randomChoice == 5) // Walk to altar (1/10)

@@ -12,6 +12,7 @@ TagManager:
   - UIHandler
   - ControlHandler
   - Canvas
+  - ManSpriteList
   layers:
   - Default
   - TransparentFX

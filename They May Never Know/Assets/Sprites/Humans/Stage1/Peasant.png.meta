@@ -107,27 +107,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Humans_0
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 38
-        width: 4
-        height: 9
-      alignment: 3
-      pivot: {x: 1, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9b8ac3733aa99760800000000000000
-      internalID: 7465184995306015643
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Humans_1
       rect:
         serializedVersion: 2
@@ -207,27 +186,6 @@ TextureImporter:
       bones: []
       spriteID: 2a8f2c1df65bd9b00800000000000000
       internalID: 837024597625993378
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Humans_5
-      rect:
-        serializedVersion: 2
-        x: 28
-        y: 58
-        width: 1
-        height: 4
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8159da7bdc1285f70800000000000000
-      internalID: 9176121408201004312
       vertices: []
       indices: 
       edges: []
