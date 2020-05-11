@@ -18,7 +18,7 @@ public class EmotionPopupToggle : MonoBehaviour
     public void toggleEPops()
     {
         ePopsOn = !ePopsOn;
-        Debug.Log("Pressed: " + ePopsOn);
+        //Debug.Log("Pressed: " + ePopsOn);
         foreach(Man m in gt.population.populationList)
         {
             m.toggleEmotionPopup(ePopsOn); // Opens or closes all ePops

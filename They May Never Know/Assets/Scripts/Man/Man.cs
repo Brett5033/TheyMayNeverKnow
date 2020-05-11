@@ -23,6 +23,8 @@ public class Man : MonoBehaviour
 
     public GridTester gt;
     public ManSpriteList mSpriteList;
+    public Canvas canvasUI;
+    public Camera mainCamera;
 
     public AIPath path;
     public Seeker seeker;
@@ -36,6 +38,7 @@ public class Man : MonoBehaviour
     EmotionPopup ePop;
     bool statMenuOpen = false;
     bool emotionPopupOpen = false;
+    bool forceEmotionPopup = false;
 
     public PlayerState state = PlayerState.atHome;
 
@@ -55,6 +58,8 @@ public class Man : MonoBehaviour
     {
         gt = GameObject.FindGameObjectWithTag("GridController").GetComponent<GridTester>();
         mSpriteList = GameObject.FindGameObjectWithTag("ManSpriteList").GetComponent<ManSpriteList>();
+        canvasUI = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         path = GetComponent<AIPath>();
@@ -292,26 +297,33 @@ public class Man : MonoBehaviour
 
     public void toggleEmotionPopup()
     {
-        if (!emotionPopupOpen)
+        if (!forceEmotionPopup)
         {
-            ePop = Instantiate(emotionPopupPrefab, Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 2f, 0f)), Quaternion.identity);
-            ePop.man = this;
-            ePop.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>().transform);
-            emotionPopupOpen = true;
-        } else
-        {
-            ePop.close();
-            emotionPopupOpen = false;
+            if (!emotionPopupOpen)
+            {
+                ePop = Instantiate(emotionPopupPrefab, mainCamera.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 2f, 0f)), Quaternion.identity);
+                ePop.man = this;
+                ePop.transform.SetParent(canvasUI.transform);
+                ePop.transform.SetAsFirstSibling();
+                emotionPopupOpen = true;
+            }
+            else
+            {
+                ePop.close();
+                emotionPopupOpen = false;
+            }
         }
     }
 
     public void toggleEmotionPopup(bool forceOpen)
     {
+        forceEmotionPopup = forceOpen;
         if (forceOpen && !emotionPopupOpen) // Open if not already open
         {
-            ePop = Instantiate(emotionPopupPrefab, Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 2f, 0f)), Quaternion.identity);
+            ePop = Instantiate(emotionPopupPrefab, mainCamera.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 2f, 0f)), Quaternion.identity);
             ePop.man = this;
-            ePop.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>().transform);
+            ePop.transform.SetParent(canvasUI.transform);
+            ePop.transform.SetAsFirstSibling();
             emotionPopupOpen = true;
         }
         else if(!forceOpen && emotionPopupOpen) // Close if not aleady closed

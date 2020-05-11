@@ -17,6 +17,7 @@ public class UIHandler : MonoBehaviour
     public PlayerSpellCaster spellCaster;
     public GridTester gt;
     public Canvas uiCanvas;
+    public Camera mainCamera;
 
     public ManMenu manMenuPrefab;
     public bool manMenuOpen;
@@ -31,6 +32,11 @@ public class UIHandler : MonoBehaviour
 
     public int queueItemsShown;
     public float queueButtonSize;
+
+    private void Start()
+    {
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
 
     void FixedUpdate()
     {
@@ -75,8 +81,9 @@ public class UIHandler : MonoBehaviour
             {
                 ManMenu newMenu = Instantiate(manMenuPrefab, new Vector3(535f, 350f, -20f), Quaternion.identity);
                 newMenu.transform.SetParent(uiCanvas.transform);
+                newMenu.transform.SetAsFirstSibling();
                 newMenu.man = m.GetComponent<Man>();
-                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ManualCamera>().setTarget(m.GetComponent<Man>());
+                mainCamera.gameObject.GetComponent<ManualCamera>().setTarget(m.GetComponent<Man>());
                 manMenuOpen = true;
             }
         }
@@ -87,7 +94,7 @@ public class UIHandler : MonoBehaviour
         //Debug.Log(queuedSpellButtons.Count);
         GameObject g = Instantiate(spellButtonPrefabs[spellCaster.SpellToType(spellCaster.spellQueue[queuedSpellButtons.Count])], goodSpellQueue.transform.position, Quaternion.identity);
         g.transform.SetParent(goodSpellQueue.transform);
-        g.transform.position = new Vector3(g.transform.position.x-10, g.transform.position.y - (queuedSpellButtons.Count * queueButtonSize + 10), 0);
+        g.transform.position = new Vector3(g.transform.position.x-10, g.transform.position.y + (queuedSpellButtons.Count * queueButtonSize + 10), 0);
         if (queuedSpellButtons.Count != 0)
         {
             g.GetComponent<Button>().interactable = false;
@@ -103,7 +110,7 @@ public class UIHandler : MonoBehaviour
     {
         for(int i = 0; i < queuedSpellButtons.Count; i++)
         {
-            queuedSpellButtons[i].transform.position = new Vector3(queuedSpellButtons[i].transform.parent.transform.position.x - 10, queuedSpellButtons[i].transform.parent.transform.position.y - (i * queueButtonSize + 10), 0);
+            queuedSpellButtons[i].transform.position = new Vector3(queuedSpellButtons[i].transform.parent.transform.position.x - 10, queuedSpellButtons[i].transform.parent.transform.position.y + (i * queueButtonSize + 10), 0);
             if(i == 0)
             {
                 queuedSpellButtons[i].GetComponent<Button>().interactable = true;

@@ -5,16 +5,18 @@ using UnityEngine;
 public class ManBrain
 {
     public Man self;
-    public float maxEmotion = 100f;
-    public float Love;
-    public float Fear;
-    public bool emotionStreakState; // true = love, false = fear
-    public float streakIncrement = .01f; // Increment per value of streak
-    public float streakCounter; // Duration of streak
+    public float maxEmotion { get; protected set; }
+    public float Love { get; protected set; }
+    public float Fear { get; protected set; }
+    public bool emotionStreakState { get; protected set; }// true = love, false = fear
+    public float streakIncrement { get; protected set; } // Increment per value of streak
+    public float streakCounter { get; protected set; } // Duration of streak
 
     public ManBrain(Man self)
     {
         this.self = self;
+        maxEmotion = 100f;
+        streakIncrement = .1f;
         Love = maxEmotion/2;
         Fear = maxEmotion/2;
         emotionStreakState = false;

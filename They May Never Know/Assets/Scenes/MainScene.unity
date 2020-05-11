@@ -589,31 +589,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2206017919608160593, guid: af4b17d91f939c14c802106e645e0038,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2206017919608160593, guid: af4b17d91f939c14c802106e645e0038,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2206017919608160593, guid: af4b17d91f939c14c802106e645e0038,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2206017919608160593, guid: af4b17d91f939c14c802106e645e0038,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2206017919608160593, guid: af4b17d91f939c14c802106e645e0038,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2206017920419260001, guid: af4b17d91f939c14c802106e645e0038,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -641,13 +616,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2206017921174593363, guid: af4b17d91f939c14c802106e645e0038,
         type: 3}
-      propertyPath: m_AnchorMax.y
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8074488505627030551, guid: af4b17d91f939c14c802106e645e0038,
+    - target: {fileID: 2206017921174593363, guid: af4b17d91f939c14c802106e645e0038,
         type: 3}
-      propertyPath: m_FillCenter
-      value: 1
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af4b17d91f939c14c802106e645e0038, type: 3}

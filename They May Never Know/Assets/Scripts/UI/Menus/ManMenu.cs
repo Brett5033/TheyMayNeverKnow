@@ -17,6 +17,7 @@ public class ManMenu : MonoBehaviour
     {
         closeButton.onClick.AddListener(() => { close(); });
         ControlFactors.setPlayerCast(false);
+        if(man != null)
         man.setStatMenuOpen(true);
         _Label.SetText("Man Stats:"); // Reserved for names
         _Love.SetText("Love: " + ((man.brain.Love / man.brain.maxEmotion) * 100f).ToString("F0") + "%");

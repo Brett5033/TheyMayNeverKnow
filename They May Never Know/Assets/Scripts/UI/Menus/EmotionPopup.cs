@@ -7,19 +7,21 @@ public class EmotionPopup : MonoBehaviour
 {
     public Man man = null;
     public TMPro.TextMeshProUGUI _Streak;
-    public Image colorBox;
+    public Image _colorBox;
+    public Slider _emotionSlider;
     
     // Start is called before the first frame update
     void Start()
     {
         _Streak.SetText(man.brain.streakCounter.ToString());
+        _emotionSlider.value = man.brain.Love / man.brain.maxEmotion;
         if (man.brain.emotionStreakState)
         {
-            colorBox.color = Color.blue;
+            _colorBox.color = Color.blue;
         }
         else
         {
-            colorBox.color = Color.red;
+            _colorBox.color = Color.red;
         }
     }
 
@@ -29,13 +31,14 @@ public class EmotionPopup : MonoBehaviour
         if(man != null)
         {
             _Streak.SetText(man.brain.streakCounter.ToString());
+            _emotionSlider.value = man.brain.Love / man.brain.maxEmotion;
             if (man.brain.emotionStreakState)
             {
-                colorBox.color = Color.blue;
+                _colorBox.color = Color.blue;
             }
             else
             {
-                colorBox.color = Color.red;
+                _colorBox.color = Color.red;
             }
             transform.position = Camera.main.WorldToScreenPoint(new Vector3(man.transform.position.x, man.transform.position.y + 2f, 0f));
         }

@@ -546,29 +546,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  randomDirInt: 20
   restTime: 40
-  homeLevel: 0
-  rb: {fileID: 6911046835587090774}
-  gt: {fileID: 0}
-  path: {fileID: 0}
+  level: 0
   celebrate: {fileID: 5907049458716497958}
   altarOffering: {fileID: 3112979064933406604}
   suprise: {fileID: 516069769497264025}
-  ani: {fileID: 0}
-  seeker: {fileID: 0}
-  homeTile: {fileID: 0}
-  emotionPopupPrefab: {fileID: 641171466834647252, guid: 70e835a9d2045aa40b74d28a63976c82,
+  emotionPopupPrefab: {fileID: 707904622121101523, guid: 31ad37b27a4ba3c41aa94bae0e13fe18,
     type: 3}
   gravestone: {fileID: 6334491345299024739, guid: aaba83c599711154aad51a610872044b,
     type: 3}
-  colors:
-  - {r: 0.69, g: 0.66183674, b: 0, a: 1}
-  - {r: 0, g: 0.55048645, b: 0.7264151, a: 1}
-  - {r: 0.759, g: 0, b: 0.088427044, a: 1}
-  - {r: 0, g: 0.73800004, b: 0.37324136, a: 1}
-  - {r: 0.77800006, g: 0.43159127, b: 0, a: 1}
-  - {r: 0.929, g: 0.929, b: 0.929, a: 1}
+  rb: {fileID: 6911046835587090774}
+  ani: {fileID: 0}
+  currentModel:
+    _Name: 
+    _Head_Forward: {fileID: 0}
+    _Head_Side: {fileID: 0}
+    _Body: {fileID: 0}
+    _Arm: {fileID: 0}
+    _Leg: {fileID: 0}
+  gt: {fileID: 0}
+  mSpriteList: {fileID: 0}
+  path: {fileID: 0}
+  seeker: {fileID: 0}
+  homeTile: {fileID: 0}
   state: 0
 --- !u!114 &8020947254783236820
 MonoBehaviour:

@@ -138,6 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalLight: {fileID: 8073604991925044950}
-  dayLength: 120
+  dayLength: 720
   lightUpdatesInterval: 0.5
   time: 3
