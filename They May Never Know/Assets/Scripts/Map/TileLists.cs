@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class TileLists : MonoBehaviour
 {
-    public GameObject Grass;
-    public GameObject Altar;
-    public GameObject[] starter;
-    public GameObject[] stage1;
-    public GameObject[] stage2;
-    public GameObject[] stage3;
-    public GameObject[] stage4;
-    public GameObject[] stage5;
+    public MapObject Grass;
+    public MapObject Altar;
+    public MapObject[] starter;
+    public MapObject[] stage1;
+    public MapObject[] stage2;
+    public MapObject[] stage3;
+    public MapObject[] stage4;
+    public MapObject[] stage5;
     
 
-    public GameObject getRandomGameobject(int a)
+    public MapObject getRandomGameobject(int a)
     {
         //Debug.Log("finding tile at: " + a);
         switch(a)
@@ -31,12 +31,12 @@ public class TileLists : MonoBehaviour
         }
     }
 
-    public GameObject getStartGameobject()
+    public MapObject getStartMapObject()
     {
         return starter[Random.Range(0, starter.Length)];
     }
 
-    public GameObject getAltar()
+    public MapObject getAltar()
     {
         return Altar;
     }

@@ -96,11 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2564c76d244a84d9273abd3b6ba5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sr: {fileID: 0}
-  c: {r: 1, g: 1, b: 1, a: 0}
-  tl: {fileID: 8525744247448800743, guid: 71c4fcec52ed1ed418020778914f8952, type: 3}
+  tileList: {fileID: 0}
+  profList: {fileID: 0}
   gt: {fileID: 0}
-  tileObject: {fileID: 0}
+  mapObject: {fileID: 0}
   manPrefab: {fileID: 2696550272446528903, guid: 8b304bd337ccf6347bade97a44798f86,
     type: 3}
   population: []

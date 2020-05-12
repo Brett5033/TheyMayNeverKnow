@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7533688820215411530}
   - component: {fileID: 2932973717555326351}
   - component: {fileID: 5582725272373182492}
+  - component: {fileID: 3904616183325811081}
   m_Layer: 11
   m_Name: Log_Cabin
   m_TagString: Untagged
@@ -110,6 +111,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6999742, y: 0.51237774}
   m_EdgeRadius: 0
+--- !u!114 &3904616183325811081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2802070579191663548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b4ece9ab63ca94f8037ca75be6cd73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tag: Cabin
+  stage: 3
+  humanProfessionTag: Knight
 --- !u!1001 &8520469308739575207
 PrefabInstance:
   m_ObjectHideFlags: 0

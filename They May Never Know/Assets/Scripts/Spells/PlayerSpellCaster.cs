@@ -51,7 +51,8 @@ public class PlayerSpellCaster : MonoBehaviour
         badSpellChoice = BadSpellType.Squish;
         goodSpellChoice = GoodSpellType.Bless;
         spellQueue = new List<Spell>();
-        uih = GameObject.FindGameObjectWithTag("UIHandler").GetComponent<UIHandler>();
+        gt = GameObject.FindGameObjectWithTag("GridController").GetComponent<GridTester>();
+        uih = gt.GetComponent<UIHandler>();
         mesh = new Mesh();
         /*
         Vector3[] verticies =

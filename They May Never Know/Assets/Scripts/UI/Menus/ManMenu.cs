@@ -11,6 +11,7 @@ public class ManMenu : MonoBehaviour
     public TMPro.TextMeshProUGUI _Fear;
     public TMPro.TextMeshProUGUI _State;
     public Button closeButton;
+    public RequestMenu manRequest = null;
 
     // Start is called before the first frame update
     void Start()
@@ -18,8 +19,17 @@ public class ManMenu : MonoBehaviour
         closeButton.onClick.AddListener(() => { close(); });
         ControlFactors.setPlayerCast(false);
         if(man != null)
-        man.setStatMenuOpen(true);
-        _Label.SetText("Man Stats:"); // Reserved for names
+        {
+            man.setStatMenuOpen(true);
+            if (man.activeRequest)
+            {
+                man.activeRequest.gameObject.SetActive(true);
+                manRequest = man.activeRequest;
+                manRequest.currentMenu = this;
+            }
+        }
+        
+        _Label.SetText(man.title);
         _Love.SetText("Love: " + ((man.brain.Love / man.brain.maxEmotion) * 100f).ToString("F0") + "%");
         _Fear.SetText("Fear: " + ((man.brain.Fear / man.brain.maxEmotion) * 100f).ToString("F0") + "%");
         _State.SetText("State: " + man.state);
@@ -50,8 +60,14 @@ public class ManMenu : MonoBehaviour
     public void close()
     {
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ManualCamera>().setTarget(null);
-        GameObject.FindGameObjectWithTag("UIHandler").GetComponent<UIHandler>().manMenuOpen = false;
+        GameObject.FindGameObjectWithTag("GridController").GetComponent<UIHandler>().manMenuOpen = false;
         man.setStatMenuOpen(false);
+        if (manRequest)
+        {
+            manRequest.currentMenu = null;
+            manRequest.gameObject.SetActive(false);
+        }
+            
         ControlFactors.setPlayerCast(true);
         Destroy(gameObject);
     }

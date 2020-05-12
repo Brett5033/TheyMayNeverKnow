@@ -11,7 +11,7 @@ public class PointLightControl : MonoBehaviour
     void Start()
     {
         pointLight = GetComponent<Light2D>();
-        dayCycle = GameObject.FindGameObjectWithTag("ControlHandler").GetComponent<DayCycle>();
+        dayCycle = GameObject.FindGameObjectWithTag("GridController").GetComponent<DayCycle>();
         //dayCycle.nightLights.Add(pointLight);
     }
 

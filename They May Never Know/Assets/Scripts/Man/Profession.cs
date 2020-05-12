@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ManSprite
+public class Profession
 {
     public string _Name;
     /*
@@ -20,4 +20,12 @@ public class ManSprite
     public Sprite _Body;
     public Sprite _Arm;
     public Sprite _Leg;
+
+    public string[] Requests;
+
+
+    public string getRequest()
+    {
+        return Requests[(int)Random.Range(0, Requests.Length)];
+    }
 }

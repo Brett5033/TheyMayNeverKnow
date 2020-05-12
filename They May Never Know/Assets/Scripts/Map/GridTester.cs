@@ -19,11 +19,7 @@ public class GridTester : MonoBehaviour
     public int starter_Tiles;
 
     //New Methods
-
-    // Old Variables
-    //public MapGrid mapGrid;
-    //public MapTile[,] mapObjects;
-    //public MapTile[] activeTiles;
+    
     public MapTile mapFillerPrefab;
     public Population population;
     public MeshHandler Land;
@@ -31,14 +27,6 @@ public class GridTester : MonoBehaviour
     public AstarPath aPath;
     public LayerMask whatIsTiles;
     
-    //public int mapWidth;
-    //public int mapHeight;
-    //public int gridNodeWidth;
-    //public int gridNodeHeight;
-    //public float distanceScalar = 3f;
-    //public float distancePower = 1.5f;
-    //public float updateThreshold = .2f;
-    //public int updateChance = 175;
     public float neighborBonus = 0.1f;
 
     public float numTries = 0f;
@@ -75,23 +63,6 @@ public class GridTester : MonoBehaviour
         StartCoroutine(StartGrid(.5f));
         //g.drawGizmos = true;
     }
-    /*
-    private void FixedUpdate()
-    {
-        if (!startUpDone)
-        {
-            if(startUpDelay <= 0)
-            {
-                startUpDone = true;
-
-            }
-            else
-            {
-                startUpDelay -= Time.deltaTime;
-            }
-        }
-       
-    }*/
 
     public void PopulateMap(bool usePerlin)
     {
@@ -177,28 +148,6 @@ public class GridTester : MonoBehaviour
         aPath.Scan();
     }
     
-    /*
-    public void PopulateGrid()
-    {
-        mapObjects = new MapTile[mapGrid.width, mapGrid.height];
-        for(int w = 0; w < mapGrid.width; w++)
-        {
-            for(int h = 0; h < mapGrid.height; h++)
-            {
-                mapObjects[w, h] = Instantiate(mapFillerPrefab, mapGrid.Map[w, h], Quaternion.identity);
-                //mapObjects[w, h].transform.localScale = ControlFactors.isometricScale;
-                mapObjects[w, h].transform.parent = transform;
-                mapObjects[w, h].GridPositon = new Vector2(w, h);
-                if(w == Mathf.Floor(mapGrid.width/2f) && h == Mathf.Floor(mapGrid.height/2f)) //Determines Altar position at middle of map
-                {
-                    mapObjects[w, h].altar = true;
-                    AltarPos = mapObjects[w, h].GetComponent<Transform>().position;
-                    AltarPos.y -= 1.25f;
-                }
-            }
-        }
-    }
-    */
     public GameObject[] getNormalDistributionFromMap(Vector3 centerPos, float radius, LayerMask whatIsObject, int numObjects)
     {
         Collider2D[] hitBoxes = Physics2D.OverlapCircleAll(centerPos, radius, whatIsObject);
@@ -220,15 +169,16 @@ public class GridTester : MonoBehaviour
         float chanceForUpdate = Random.value * 10f;
         if (neighbors.Length > 2)
             chanceForUpdate += 2;
-        if(chanceForUpdate >= 8)
+        chanceForUpdate += (tile.getStageNum()*2)-2;
+        if (chanceForUpdate >= 8)
         {
-            calcDevelopmentScore();
+            
             return true;
         }
         return false;
     }
 
-    private void calcDevelopmentScore()
+    public void calcDevelopmentScore()
     {
         if (confLevel == RandomFromDistribution.ConfidenceLevel_e._80 && ControlFactors.DEVELOPMENT_SCORE > 15000) { confLevel = RandomFromDistribution.ConfidenceLevel_e._60; Debug.Log("60"); }
         else if (confLevel == RandomFromDistribution.ConfidenceLevel_e._90 && ControlFactors.DEVELOPMENT_SCORE > 10000) { confLevel = RandomFromDistribution.ConfidenceLevel_e._80; Debug.Log("80"); }

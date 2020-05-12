@@ -9,7 +9,7 @@ public static class Offerings
     {
         //new Offer("?", -1f, 1f, 1f),
         new Offer("Should we consume the wild mushrooms of the forest?", -10f, 10f, 10f),
-        new Offer("Are the dragonbs friendly?", -10f, 10f, 20f),
+        new Offer("Are the dragons friendly?", -10f, 10f, 20f),
         new Offer("If we jump out the castle window, will it hurt?", 10f, -10f, 10f),
         new Offer("Should the blacksmith make sharper tools?", 10f, 5f, 15f),
         new Offer("Is cow poop edible?", -15f, 10f, 10f),

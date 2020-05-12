@@ -9768,6 +9768,7 @@ GameObject:
   - component: {fileID: 1471205646794212675}
   - component: {fileID: 9044028631644812861}
   - component: {fileID: 8755985074534614383}
+  - component: {fileID: 1079255524646161286}
   m_Layer: 11
   m_Name: Altar
   m_TagString: Untagged
@@ -9869,6 +9870,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34395108, y: 0.21216887}
   m_EdgeRadius: 0
+--- !u!114 &1079255524646161286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7216239646981216045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b4ece9ab63ca94f8037ca75be6cd73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tag: Altar
+  stage: 0
+  humanProfessionTag: NA
 --- !u!1001 &4980842715819776439
 PrefabInstance:
   m_ObjectHideFlags: 0

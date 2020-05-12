@@ -9,6 +9,7 @@ public class UIHandler : MonoBehaviour
     public TMPro.TextMeshProUGUI _Love;
     public TMPro.TextMeshProUGUI _Fear;
     public TMPro.TextMeshProUGUI _EnergyCharges;
+    public TMPro.TextMeshProUGUI _MaxEnergy;
     public TMPro.TextMeshProUGUI _Time;
     public Slider _EnergySlider;
     public Slider _EmotionBar;
@@ -47,9 +48,10 @@ public class UIHandler : MonoBehaviour
         _Love.SetText("Love: " + ((ControlFactors.LOVE / ControlFactors.EMOTION)*100f).ToString("F0") + "%");
         _Fear.SetText("Fear: " + ((ControlFactors.FEAR / ControlFactors.EMOTION)*100f).ToString("F0") + "%");
         _EnergySlider.value = ((ControlFactors.ENERGY % ControlFactors.MAX_ENERGY) / ControlFactors.MAX_ENERGY);
-        _EnergyCharges.SetText(((int)ControlFactors.ENERGY / (int)ControlFactors.MAX_ENERGY).ToString("F2"));
+        _EnergyCharges.SetText(((int)ControlFactors.ENERGY / (int)ControlFactors.MAX_ENERGY).ToString("F0"));
         _EmotionBar.value = (ControlFactors.LOVE / ControlFactors.EMOTION);
         _Time.SetText("Time: " + getTimeInHours());
+        _MaxEnergy.SetText("x " + ControlFactors.MAX_ENERGY.ToString("F0"));
 
         // Checks if the Good Spell Queue needs to be updated
         if(spellCaster.spellQueue.Count > queuedSpellButtons.Count && queuedSpellButtons.Count < queueItemsShown)

@@ -55,4 +55,34 @@ public class Population
         
     }
 
+    public void startDayRequests()
+    {
+        Debug.Log("Start Request Generation");
+        float requestMax = ControlFactors.DEVELOPMENT_SCORE / 2f;
+        int counter = 0;
+        foreach(Man m in populationList)
+        {
+            
+            if(Random.value < .5f)
+            {
+                Debug.Log("Generate Request");
+                m.generateRequest();
+                counter++;
+            }
+            if (counter > requestMax)
+                break;
+        }
+    }
+
+    public void clearRequests()
+    {
+        foreach (Man m in populationList)
+        {
+            if (m.activeRequest)
+            {
+                m.activeRequest.timeOut();
+            }
+        }
+    }
+
 }

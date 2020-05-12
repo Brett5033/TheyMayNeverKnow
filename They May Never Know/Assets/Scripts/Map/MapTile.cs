@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class MapTile : MonoBehaviour
 {
-    public SpriteRenderer sr;
-    public Color c;
-    public TileLists tl;
+    public TileLists tileList;
+    public ProfessionList profList;
     public GridTester gt;
-    public GameObject tileObject;
+    public MapObject mapObject;
     public Man manPrefab;
     public List<Man> population;
     public Vector3 spawnPos;
@@ -27,17 +26,17 @@ public class MapTile : MonoBehaviour
         three,
         four,
         five,
-        six
+        six,
+        NumberOfTypes
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
-        tl = GameObject.FindGameObjectWithTag("TileLists").GetComponent<TileLists>();
         gt = GameObject.FindGameObjectWithTag("GridController").GetComponent<GridTester>();
-        tileObject = new GameObject();
+        tileList = gt.GetComponent<TileLists>();
+        profList = gt.GetComponent<ProfessionList>();
         population = new List<Man>();
         spawnPos = transform.position;
         spawnPos.y -= 1.25f;
@@ -52,69 +51,40 @@ public class MapTile : MonoBehaviour
 
     private void SetTile()
     {
-        GameObject oldObject = tileObject;
+        MapObject oldObject = mapObject;
         if(stage!= Stage.zero) // Tile is an active object
         {
-            tileObject = Instantiate(tl.getRandomGameobject((int)stage),transform.position,ControlFactors.isometric);
+            mapObject = Instantiate(tileList.getRandomGameobject((int)stage),transform.position,ControlFactors.isometric);
             //gameObject.layer = 8;
         }
         else
         {
             if(altar && starting) // Sets altar at start
             {
-                tileObject = Instantiate(tl.getAltar(), transform.position, ControlFactors.isometric);
+                mapObject = Instantiate(tileList.getAltar(), transform.position, ControlFactors.isometric);
                 starting = false;
-                /*if (tileObject.layer != 8)
-                {
-                    gameObject.layer = 0;
-                }*/
             }
             else if (starting) // Sets everyother tile at start
             {
-                tileObject = Instantiate(tl.getStartGameobject(), transform.position, ControlFactors.isometric);
+                mapObject = Instantiate(tileList.getStartMapObject(), transform.position, ControlFactors.isometric);
                 starting = false;
-                /*if (tileObject.layer != 8)
-                {
-                    gameObject.layer = 0;
-                }*/
             }
-            else if (!altar)
+            else if (!altar) // When any tile gets destroyed
             {
-                tileObject = Instantiate(tl.Grass, transform.position, ControlFactors.isometric);
-                /*if (tileObject.layer != 8)
-                {
-                    gameObject.layer = 0;
-                    gt.aPath.Scan();
-                }*/
-                
+                mapObject = Instantiate(tileList.Grass, transform.position, ControlFactors.isometric);
             }
             
         }
-        Destroy(oldObject);
-        tileObject.transform.parent = gameObject.transform;
+        if (oldObject != null)
+        {
+            oldObject.gameObject.SetActive(false);
+            Destroy(oldObject,.01f);
+        }
+        
+        mapObject.transform.parent = gameObject.transform;
         gt.aPath.UpdateGraphs(new Bounds(transform.position, new Vector3(10f, 10f, 1f)), 3f);
         //tileObject.transform.localScale = ControlFactors.isometricScale;
     }
-    /*
-    public bool RecievedUpdate() // Called for tiles automatic updates
-    {
-        bool updated = false;
-        if (!altar)
-        {
-            if (stage < stageMax)
-            {
-                stage++;
-                SetTile();
-                if (population.Count < 1)
-                {
-                    changePopulation(true);
-                }
-                updated = true;
-            }
-        }
-        return updated;
-       
-    }*/
 
     public bool ChangeTileStage(float change) // Changes a tile by change, used for spells that affect tiles
     {
@@ -159,8 +129,10 @@ public class MapTile : MonoBehaviour
                     }
                 }
             }
-            UpdatePopulationLevel();
             SetTile();
+            UpdatePopulationLevel();
+            setManProfession();
+            
         }
         return hasChanged;
     }
@@ -210,6 +182,19 @@ public class MapTile : MonoBehaviour
         for (int i = 0; i < population.Count; i++)
         {
             population[i].level = (int)stage;
+        }
+    }
+
+    public void setManProfession()
+    {
+        if(stage > 0)
+        {
+            Profession p = profList.getProfession((int)stage, mapObject.humanProfessionTag);
+            foreach(Man m in population)
+            {
+                m.changeProfession(p);
+            }
+            
         }
     }
 

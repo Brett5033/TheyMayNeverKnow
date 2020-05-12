@@ -6,6 +6,7 @@ using UnityEngine;
 public class DayCycle : MonoBehaviour
 {
     public Light2D globalLight;
+    public GridTester gt;
 
     //public List<Light2D> nightLights = new List<Light2D>();
     public float dayLength = 120f;
@@ -16,8 +17,9 @@ public class DayCycle : MonoBehaviour
 
     private void Start()
     {
+        gt = GameObject.FindGameObjectWithTag("GridController").GetComponent<GridTester>();
         ControlFactors.DAY_LENGTH = dayLength;
-        ControlFactors.CURRENT_TIME = dayLength / 4;
+        ControlFactors.CURRENT_TIME = dayLength / 7;
         setTime();
     }
 
@@ -54,7 +56,7 @@ public class DayCycle : MonoBehaviour
 
     private void setTime()
     {
-        //TimeOfDay oldTime = time;
+        TimeOfDay oldTime = time;
         if(ControlFactors.CURRENT_TIME < ControlFactors.DAY_LENGTH / 12f) 
         {
             time = TimeOfDay.MorningMidnight;
@@ -83,11 +85,14 @@ public class DayCycle : MonoBehaviour
         {
             time = TimeOfDay.NightMidnight;
         }
-        /*
+        
         if(oldTime != time) // Checks if the Global needs to be updated;
         {
-            setGlobalLight();
-        }*/
+            if (time == TimeOfDay.Sunrise)
+                startNewDay();
+            else if (time == TimeOfDay.Sunset)
+                endDay();
+        }   
     }
 
     private void setDynamicGlobalLight()
@@ -104,6 +109,17 @@ public class DayCycle : MonoBehaviour
         {
             globalLight.intensity = (ControlFactors.DAY_LENGTH - ControlFactors.CURRENT_TIME) * (1f / (ControlFactors.DAY_LENGTH / 4f));
         }
+    }
+
+    private void startNewDay()
+    {
+        Debug.Log("New Day Started:");
+        gt.population.startDayRequests();
+    }
+
+    private void endDay()
+    {
+        gt.population.clearRequests();
     }
 
     private void setGlobalLight() // 
@@ -129,6 +145,7 @@ public class DayCycle : MonoBehaviour
             case TimeOfDay.Sunrise:
                 {
                     globalLight.intensity = .6f;
+
                     //changeNightLights(false);
                 }
                 break;

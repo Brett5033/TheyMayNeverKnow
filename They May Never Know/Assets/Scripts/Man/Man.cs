@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class Man : MonoBehaviour
 {
-
+    public string title;
     public float speed;
     public float restTime;
     public int level;
@@ -13,16 +13,19 @@ public class Man : MonoBehaviour
     public ParticleSystem celebrate;
     public ParticleSystem altarOffering;
     public ParticleSystem suprise;
+    public SpriteRenderer requestNotification;
     public EmotionPopup emotionPopupPrefab;
+    public RequestMenu requestMenuPrefab;
+    public RequestMenu activeRequest = null;
     public GameObject gravestone;
 
     public ManBrain brain;
     public Rigidbody2D rb;
     public Animator ani;
-    public ManSprite currentModel;
+    public Profession prof = null;
+    public ManSpriteHandler spriteHandler;
 
     public GridTester gt;
-    public ManSpriteList mSpriteList;
     public Canvas canvasUI;
     public Camera mainCamera;
 
@@ -57,9 +60,9 @@ public class Man : MonoBehaviour
     void Start()
     {
         gt = GameObject.FindGameObjectWithTag("GridController").GetComponent<GridTester>();
-        mSpriteList = GameObject.FindGameObjectWithTag("ManSpriteList").GetComponent<ManSpriteList>();
         canvasUI = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        spriteHandler = GetComponent<ManSpriteHandler>();
         rb = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         path = GetComponent<AIPath>();
@@ -141,6 +144,11 @@ public class Man : MonoBehaviour
         {
             case PlayerState.atHome: // Was at Home, Now chooses Next activity
                 {
+                    if(brain.Love / brain.maxEmotion > .95)
+                    {
+                        homeTile.ChangeTileStage(1);
+                        brain.changeFear(brain.maxEmotion / 4f);
+                    }
                     float randomChoice = Random.Range(0, 10);
                     if (randomChoice < 5) // Walk to random location (5/10)
                     {
@@ -195,6 +203,7 @@ public class Man : MonoBehaviour
                     if (gt.ChanceForTileUpdate(targetTile))
                     {
                         targetTile.ChangeTileStage(1);
+                        gt.calcDevelopmentScore();
                         Celebrate(1);
                     }
                     StartCoroutine(Rest(restTime/2));
@@ -339,6 +348,23 @@ public class Man : MonoBehaviour
         toggleEmotionPopup(false);
         Instantiate(gravestone, transform.position, Quaternion.identity);
         homeTile.zeroTile();
+    }
+
+    public void changeProfession(Profession newProfession)
+    {
+        prof = newProfession;
+        title = newProfession._Name;
+        spriteHandler.convertToNewProfession(newProfession);
+    }
+    
+    public void generateRequest()
+    {
+        activeRequest = Instantiate(requestMenuPrefab, new Vector3(735f, 350f, -20f), Quaternion.identity);
+        activeRequest.man = this;
+        activeRequest.transform.SetParent(canvasUI.transform);
+        activeRequest.transform.SetAsFirstSibling();
+        activeRequest.gameObject.SetActive(false);
+        requestNotification.enabled = true;
     }
 
 }
